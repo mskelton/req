@@ -1,14 +1,27 @@
 name: Build
 on: [push]
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mskelton/setup-pnpm@v1
+      - name: Lint
+        run: pnpm lint
+      - name: Check formatting
+        run: pnpm lint
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: mskelton/setup-pnpm@v1
-      - run: pnpm test
+      - name: Test
+        run: pnpm test
   release:
-    needs: test
+    needs: [lint, test]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
       - uses: mskelton/setup-pnpm@v1
       - name: Release
