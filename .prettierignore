@@ -1,6 +1,2 @@
-# Yarn auto-generated files
-.yarn/
-.yarnrc.yml
-
-# Ouptuts
-lib/
+pnpm-lock.yaml
+dist/

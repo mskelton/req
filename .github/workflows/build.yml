@@ -4,15 +4,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: mskelton/setup-yarn@v1
-      - run: yarn test
+      - uses: mskelton/setup-pnpm@v1
+      - run: pnpm test
   release:
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: mskelton/setup-yarn@v1
+      - uses: mskelton/setup-pnpm@v1
       - name: Release
-        run: yarn semantic-release
+        run: pnpm semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
