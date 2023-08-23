@@ -1,0 +1,7 @@
+{
+  "extends": "@mskelton/tsconfig",
+  "compilerOptions": {
+    "outDir": "lib"
+  },
+  "include": ["src"]
+}

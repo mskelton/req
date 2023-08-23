@@ -1,0 +1,35 @@
+{
+  "name": "npm-template",
+  "description": "",
+  "version": "0.0.0-semantically-released",
+  "author": "Mark Skelton",
+  "packageManager": "yarn@3.3.1",
+  "repository": "github:mskelton/npm-template",
+  "bugs": {
+    "url": "https://github.com/mskelton/npm-template/issues"
+  },
+  "homepage": "https://github.com/mskelton/npm-template#readme",
+  "license": "ISC",
+  "keywords": [],
+  "type": "module",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "ts": "tsc"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/eslint-parser": "^7.19.1",
+    "@mskelton/eslint-config": "^7.1.0",
+    "@mskelton/tsconfig": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "eslint": "^8.32.0",
+    "eslint-plugin-sort": "^2.4.0",
+    "prettier": "^2.8.3",
+    "typescript": "^4.9.4"
+  }
+}
