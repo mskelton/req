@@ -39,6 +39,15 @@ export class Req {
       .reduce((acc, hook) => hook.fn(acc), data)
   }
 
+  #err(
+    message: string,
+    status: number,
+    data: RequestData,
+    res: Response,
+  ): ReqError {
+    return this.#applyHooks("error", new ReqError(message, status, data, res))
+  }
+
   async request<T>(
     url: string,
     options: RequestOptions,
@@ -51,7 +60,7 @@ export class Req {
     const request = this.#applyHooks("request", {
       ...options,
       headers,
-      url,
+      url: (this.baseURL ?? "") + url,
     })
 
     const res = await fetch(request.url, {
@@ -62,14 +71,11 @@ export class Req {
     })
 
     if (!res.ok) {
-      throw this.#applyHooks(
-        "error",
-        new ReqError(
-          `Failed to fetch ${url} with status ${res.status}.`,
-          res.status,
-          request,
-          res,
-        ),
+      throw this.#err(
+        `Failed to fetch ${request.url} with status ${res.status}.`,
+        res.status,
+        request,
+        res,
       )
     }
 
@@ -77,14 +83,11 @@ export class Req {
       const parsed = await parseResponse<T>(res)
       return this.#applyHooks<T>("response", parsed)
     } catch (e) {
-      throw this.#applyHooks(
-        "error",
-        new ReqError(
-          `Failed to fetch ${url} with status ${res.status}.`,
-          res.status,
-          request,
-          res,
-        ),
+      throw this.#err(
+        `Failed to fetch ${request.url} with status ${res.status}.`,
+        res.status,
+        request,
+        res,
       )
     }
   }
