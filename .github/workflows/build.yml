@@ -24,6 +24,8 @@ jobs:
       pull-requests: write
     steps:
       - uses: mskelton/setup-pnpm@v2
+      - name: Build
+        run: pnpm build
       - name: Release
         run: pnpm semantic-release
         env:
