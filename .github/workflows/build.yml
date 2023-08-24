@@ -4,7 +4,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: mskelton/setup-pnpm@v1
+      - uses: mskelton/setup-pnpm@v2
       - name: Lint
         run: pnpm lint
       - name: Check formatting
@@ -12,7 +12,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: mskelton/setup-pnpm@v1
+      - uses: mskelton/setup-pnpm@v2
       - name: Test
         run: pnpm test
   release:
@@ -23,7 +23,7 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-      - uses: mskelton/setup-pnpm@v1
+      - uses: mskelton/setup-pnpm@v2
       - name: Release
         run: pnpm semantic-release
         env:
