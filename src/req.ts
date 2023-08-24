@@ -48,7 +48,7 @@ export class Req {
     }
 
     const body =
-      headers["Content-Type"] === "json" && options.body
+      headers["Content-Type"].includes("json") && options.body
         ? JSON.stringify(options.body)
         : (options.body as BodyInit)
 
