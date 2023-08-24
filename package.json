@@ -40,6 +40,7 @@
     "eslint-plugin-vitest": "^0.2.8",
     "msw": "^1.2.3",
     "prettier": "^3.0.2",
+    "semantic-release": "^21.1.0",
     "tsup": "^7.2.0",
     "typescript": "^5.1.6",
     "vitest": "^0.34.2"
