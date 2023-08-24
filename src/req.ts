@@ -7,6 +7,7 @@ import {
   RequestOptions,
   RequestResult,
 } from "./types.js"
+import { isJSON } from "./utils.js"
 
 export class Req {
   baseURL?: string
@@ -47,19 +48,19 @@ export class Req {
       ...options.headers,
     }
 
-    const body =
-      headers["Content-Type"].includes("json") && options.body
-        ? JSON.stringify(options.body)
-        : (options.body as BodyInit)
-
     const request = this.#applyHooks("request", {
       ...options,
-      body,
       headers,
       url,
     })
 
-    const res = await fetch(request.url, request)
+    const res = await fetch(request.url, {
+      ...request,
+      body: isJSON(request)
+        ? JSON.stringify(request.body)
+        : (request.body as BodyInit),
+    })
+
     if (!res.ok) {
       throw this.#applyHooks(
         "error",

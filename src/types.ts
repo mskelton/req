@@ -4,7 +4,7 @@ export interface RequestOptions extends Omit<RequestInit, "body"> {
   body?: unknown
 }
 
-export interface RequestData extends RequestInit {
+export interface RequestData extends RequestOptions {
   url: string
 }
 
