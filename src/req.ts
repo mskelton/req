@@ -14,7 +14,7 @@ export class Req {
   headers: Record<string, string> = {}
   #hooks: RequestHook[] = []
 
-  constructor(public readonly base?: Req) {
+  constructor(base?: Req) {
     if (base) {
       this.baseURL = base.baseURL
       this.headers = base.headers

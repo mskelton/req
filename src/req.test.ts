@@ -13,6 +13,13 @@ describe("req.request", () => {
     const res = await req.request("http://localhost/method", { method: "POST" })
     expect(res).toStrictEqual({ method: "POST", success: true })
   })
+
+  it("should respect the baseURL", async () => {
+    const req = new Req()
+    req.baseURL = "http://localhost"
+    const res = await req.request("/method", { method: "GET" })
+    expect(res).toStrictEqual({ method: "GET", success: true })
+  })
 })
 
 describe.each(["options", "head", "post", "put", "patch", "delete"])(
